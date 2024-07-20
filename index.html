@@ -1,0 +1,126 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>مشغل القراءن الكريم</title>
+  <style>
+    /* CSS styles for the music player */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: black;
+    }
+    .music-player {
+      max-width: 800px;
+      margin: 50px auto;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+    }
+    .album-cover {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .album-cover img {
+      max-width: 200px;
+      border-radius: 10px;
+    }
+    .player-controls {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+    .player-controls button {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 0 10px;
+    }
+    .player-controls button:hover {
+      background-color: black;
+    }
+    .playlist {
+      list-style-type: none;
+      padding: 0;
+    }
+    .playlist li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      border-bottom: 1px solid #f4f4f4;
+      cursor: pointer;
+    }
+    .playlist li:hover {
+      background-color: whait;
+    }
+  </style>
+</head>
+<body>
+  <div class="music-player">
+    <div class="album-cover">
+      <img src="https://media.tenor.com/2RPTRbHyEYgAAAAM/music.gif" alt="Album Cover">
+    </div>
+    <div class="player-controls">
+      <button id="prev-btn">Previous</button>
+      <button id="play-btn">Play</button>
+      <button id="next-btn">Next</button>
+    </div>
+    <ul class="playlist">
+      <li data-src="https://ve32.aadika.xyz/download/8ZXmbtwwyKM/mp3/128/1721448780/5d9414a6c6a45c8a7b5a15e5f8407162b50634d90ce4589d21a5f2a38bea09b6/1?f=SnapSave.io">
+القرآن الكريم كامل بصوت الشيخ سعد الغامدي</li>
+      
+    </ul>
+  </div>
+
+  <script>
+    // JavaScript code for the music player
+    const prevBtn = document.getElementById('prev-btn');
+    const playBtn = document.getElementById('play-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const playlist = document.querySelectorAll('.playlist li');
+    let currentIndex = 0;
+    let audio = new Audio();
+
+    function playSong(index) {
+      audio.src = playlist[index].dataset.src;
+      audio.play();
+    }
+
+    prevBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + playlist.length) % playlist.length;
+      playSong(currentIndex);
+    });
+
+    playBtn.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play();
+      } else {
+        audio.pause();
+      }
+    });
+
+    nextBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % playlist.length;
+      playSong(currentIndex);
+    });
+
+    playlist.forEach((song, index) => {
+      song.addEventListener('click', () => {
+        currentIndex = index;
+        playSong(currentIndex);
+      });
+    });
+  </script>
+</body>
+</html>
+```
